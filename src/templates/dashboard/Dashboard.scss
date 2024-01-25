@@ -1,0 +1,19 @@
+$column-count: 1;
+
+.dashboard {
+    background-color: rgb(0 0 0 / .5);
+
+    &__grid {
+        display: grid;
+        gap: 1rem;
+        
+        @media (min-width: $small) {
+            $column-count: 2;
+            grid-template-columns: repeat($column-count, 1fr);
+
+            &__widget3 {
+                grid-column: 1/3;
+            }
+        }
+    }
+}
