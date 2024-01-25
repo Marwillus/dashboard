@@ -1,7 +1,9 @@
+import Menu from "../../components/menu/Menu"
+
 function Dashboard() {
   return (
     <div>
-      magic
+      <Menu></Menu>
     </div>
   )
 }
