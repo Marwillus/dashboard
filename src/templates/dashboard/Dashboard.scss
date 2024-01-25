@@ -1,7 +1,14 @@
 $column-count: 1;
 
 .dashboard {
+    display: flex;
+    flex-direction: column;
+    max-width: 1000px;
     background-color: rgb(0 0 0 / .5);
+
+    @media (min-width: $small) {
+        flex-direction: row; 
+    }
 
     &__grid {
         display: grid;
