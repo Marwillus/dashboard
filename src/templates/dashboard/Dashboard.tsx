@@ -1,6 +1,15 @@
+import { ArchersBow, Home, MarketAnalysis, Microscope, SunOne } from "@icon-park/react";
 import Menu from "../../components/menu/Menu"
 import Widget from "../../components/widget/Widget"
 import './Dashboard.scss'
+
+const menuItem = [
+    { label: 'Home', icon: <Home /> },
+    { label: 'Weather', icon: <SunOne /> },
+    { label: 'Economy', icon: <MarketAnalysis /> },
+    { label: 'Science', icon: <Microscope /> },
+    { label: 'Sports', icon: <ArchersBow /> },
+];
 
 function Dashboard() {
     return (
