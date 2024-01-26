@@ -1,4 +1,4 @@
-// https://newsapi.org/v2/top-headlines?country=us&pageSize=3&apiKey=364a5a26f4b7467a8a52b8521716b2f8
+// https://newsapi.org/v2/top-headlines?country=us&pageSize=3&apiKey=xxx
 export const newsMockData = {
     "status": "ok",
     "totalResults": 34,
