@@ -1,6 +1,10 @@
 import { ArchersBow, Home, MarketAnalysis, Microscope, SunOne } from '@icon-park/react';
 import './Menu.scss'
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+
+interface MenuProps {
+    setActiveTopic: React.Dispatch<SetStateAction<number>>
+}
 
 const navigationItems = [
     { label: 'Home', icon: <Home /> },
@@ -10,7 +14,7 @@ const navigationItems = [
     { label: 'Sports', icon: <ArchersBow /> },
 ];
 
-function Menu() {
+function Menu({ setActiveTopic }: MenuProps) {
     const [activeElementsIndex, setActiveElementsIndex] = useState(0)
 
     const menu = useRef<HTMLDivElement>(null)
@@ -27,6 +31,7 @@ function Menu() {
 
     const handleClickItem = (index: number) => {
         setActiveElementsIndex(index)
+        setActiveTopic(index)
         document.body.style.backgroundColor = bgColorsBody[index];
     }
 
