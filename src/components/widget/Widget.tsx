@@ -1,9 +1,25 @@
 import './Widget.scss'
 
-function Widget() {
+interface WidgetProps {
+    author: string | null
+    title: string | null
+    description: string | null
+    url: string | null
+    urlToImage: string | null
+    content: string | null
+}
+
+function Widget({ author, title, description, url, urlToImage, content }: WidgetProps) {
     return (
         <div className='widget'>
-           Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit dolorum facilis rerum, expedita repellat illo odio. Id ratione expedita explicabo fuga, debitis nobis suscipit fugiat modi vero sit eaque ea.
+            <h3>{title}</h3>
+            <p>{author}</p>
+            {urlToImage && <div className="widget__img">
+                <img src={urlToImage} alt={title + ' image'} />
+            </div>}
+            {url && <div>
+                <a href={url}>to source</a>
+            </div>}
         </div>
     )
 }

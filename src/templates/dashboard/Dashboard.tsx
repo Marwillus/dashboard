@@ -6,7 +6,7 @@ import { useState } from "react";
 import { newsMockData } from '../../api/mockdata'
 import { newsUrlTop } from "../../api/endpoints";
 
-const country='de'
+const country = 'de'
 
 const menuItems = [
     {
@@ -37,15 +37,20 @@ function Dashboard() {
                     <h2>{menuItems[activeTopic].topic}</h2>
                 </div>
                 <div className="dashboard__grid">
-                    <div className="dashboard__grid__widget1">
-                        <Widget></Widget>
-                    </div>
-                    <div className="dashboard__grid__widget2">
-                        <Widget></Widget>
-                    </div>
-                    <div className="dashboard__grid__widget3">
-                        <Widget></Widget>
-                    </div>
+                    {data.articles.map((article, index) => {
+                        if (index <= 2) return (
+                            <div className={"dashboard__grid__widget-" + index}>
+                                <Widget
+                                    author={article.author}
+                                    title={article.title}
+                                    description={article.description}
+                                    url={article.url}
+                                    urlToImage={article.urlToImage}
+                                    content={article.content}
+                                />
+                            </div>
+                        )
+                    })}
                 </div>
             </div>
         </div>
