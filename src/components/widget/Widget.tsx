@@ -12,14 +12,15 @@ interface WidgetProps {
 function Widget({ author, title, description, url, urlToImage, content }: WidgetProps) {
     return (
         <div className='widget'>
-            <h3>{title}</h3>
-            <p>{author}</p>
-            {urlToImage && <div className="widget__img">
+            {urlToImage && <div className="widget__image">
                 <img src={urlToImage} alt={title + ' image'} />
             </div>}
-            {url && <div>
-                <a href={url}>to source</a>
-            </div>}
+            <div className='widget__content'>
+                <h4>{title}</h4>
+                {url && <button className='link-button'>
+                    <a href={url}>{author}</a>
+                </button>}
+            </div>
         </div>
     )
 }

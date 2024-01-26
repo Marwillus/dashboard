@@ -2,7 +2,7 @@ import { ArchersBow, Home, MarketAnalysis, Microscope, SunOne, User } from "@ico
 import Menu from "../../components/menu/Menu"
 import Widget from "../../components/widget/Widget"
 import './Dashboard.scss'
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { newsMockData } from '../../api/mockdata'
 import { newsUrlTop } from "../../api/endpoints";
 
@@ -34,7 +34,7 @@ function Dashboard() {
 
             <div className="dashboard__content">
                 <div className="dashboard__header">
-                    <h2>{menuItems[activeTopic].topic}</h2>
+                    <h3>{menuItems[activeTopic].header ?? menuItems[activeTopic].topic}</h3>
                 </div>
                 <div className="dashboard__grid">
                     {data.articles.map((article, index) => {

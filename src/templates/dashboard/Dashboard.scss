@@ -1,24 +1,36 @@
 $column-count: 1;
 
 .dashboard {
-    display: flex;
-    flex-direction: column;
-    max-width: 1000px;
-    background-color: rgb(0 0 0 / .5);
+    max-width: 800px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 2rem;
+    overflow: hidden;
 
-    @media (min-width: $small) {
-        flex-direction: row; 
+    &__content {
+        padding: 1.5rem;
+        color: rgba(0, 0, 0, 0.8);
+    }
+
+    &__header {
+        display: flex;
+        justify-content: end;
+
+        > * {
+            margin-block: 1rem;
+            font-size: 2rem;
+            font-weight: 200;
+        }
     }
 
     &__grid {
         display: grid;
-        gap: 1rem;
-        
+        gap: 1.5rem;
+
         @media (min-width: $small) {
             $column-count: 2;
             grid-template-columns: repeat($column-count, 1fr);
 
-            &__widget3 {
+            &__widget-2 {
                 grid-column: 1/3;
             }
         }
