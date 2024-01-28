@@ -1,7 +1,7 @@
 $column-count: 1;
 
 .dashboard {
-    max-width: 800px;
+    max-width: 1000px;
     background-color: $bgDashboard;
     margin-inline: auto;
     border-radius: 2rem;
@@ -9,10 +9,12 @@ $column-count: 1;
     box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.493);
 
     &__content {
-        padding: 1rem 2rem;
+        padding: 2rem;
+        padding-block-start: 1rem;
 
-        @media (min-width: $small) {
-            padding: 2rem 4rem;
+        @media (min-width: $medium) {
+            padding: 4rem;
+            padding-block-start: 1.5rem;
         }
     }
 
@@ -25,7 +27,7 @@ $column-count: 1;
             font-size: 2rem;
             font-weight: 200;
 
-            @media (min-width: $small) {
+            @media (min-width: $medium) {
                 margin-block-end: 4rem;
             }
         }
@@ -35,7 +37,7 @@ $column-count: 1;
         display: grid;
         gap: 4rem;
 
-        @media (min-width: $small) {
+        @media (min-width: $medium) {
             $column-count: 2;
             grid-template-columns: repeat($column-count, 1fr);
 

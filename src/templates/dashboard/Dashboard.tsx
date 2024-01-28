@@ -4,26 +4,25 @@ import Widget from "../../components/widget/Widget"
 import './Dashboard.scss'
 import { useEffect, useState } from "react";
 import { newsMockData } from '../../api/mockdata'
-import { newsUrlAll, newsUrlTop } from "../../api/endpoints";
+import { newsUrlTop } from "../../api/endpoints";
 import axios from "axios";
 
 export interface MenuItem {
     topic: string;
     icon: JSX.Element;
-    header: string;
+    header?: string;
     api: string;
     bgColor: string;
 }
 
 const country = 'us'
-const resultSize = '3'
 
 const menuItems: MenuItem[] = [
     {
         topic: 'Home',
         icon: <Home />,
         header: "Welcome back, Friend",
-        api: `${newsUrlTop}?country=${country}&pageSize=${resultSize}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
+        api: `${newsUrlTop}?country=${country}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
         bgColor: "#ffb457"
     },
     // TODO: design weather widgets
@@ -31,22 +30,19 @@ const menuItems: MenuItem[] = [
     {
         topic: 'Economy',
         icon: <MarketAnalysis />,
-        header: "Welcome back, Friend",
-        api: `${newsUrlTop}?category=business&country=${country}&pageSize=${resultSize}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
+        api: `${newsUrlTop}?category=business&country=${country}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
         bgColor: "#ff96bd"
     },
     {
         topic: 'Science',
         icon: <Microscope />,
-        header: "Welcome back, Friend",
-        api: `${newsUrlTop}?category=science&country=${country}&pageSize=${resultSize}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
+        api: `${newsUrlTop}?category=science&country=${country}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
         bgColor: "#9999fb"
     },
     {
         topic: 'Sports',
         icon: <ArchersBow />,
-        header: "Welcome back, Friend",
-        api: `${newsUrlTop}?category=sports&country=${country}&pageSize=${resultSize}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
+        api: `${newsUrlTop}?category=sports&country=${country}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
         bgColor: "#ffe797"
     },
     // TODO: add user section

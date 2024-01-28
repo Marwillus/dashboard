@@ -1,6 +1,6 @@
-$small: 767px;
+$small: 480px;
 $medium: 768px;
-$large: 992px;
+$large: 1279px;
 
 $textColor: #001f3f;
 $textColorOpposite: #f6f5f7;
@@ -10,11 +10,12 @@ $bgDashboardMenu : #1d1d27;
 
 $bgNeumorphButton: linear-gradient(145deg, #cacaca, #f0f0f0);
 $neumorphSmall: 0.25rem 0.25rem 0.75rem #bebebe,
--0.25rem -0.25rem 0.75rem #ffffff;
+-0.25rem -0.25rem 0.5rem #ffffff;
 $neumorphBig: 0.5rem 0.5rem 1rem #bebebe,
 -0.5rem -0.5rem 1rem #ffffff;
 $neumorphSmallInvert: inset 0.25rem 0.25rem 0.5rem #bebebe,
 inset -0.25rem -0.25rem 0.75rem #ffffff;
+
 
 $fastTransition: .2s;
 $slowTransition: .7s;

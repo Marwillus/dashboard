@@ -1,6 +1,7 @@
 .widget {
-    height: 100%;
+    // height: 100%;
     padding: 2rem;
+    padding-block-end: 0.5rem;
     background-color: $bgDashboard;
     border-radius: 1rem;
     overflow: hidden;
@@ -8,11 +9,15 @@
     background: $bgDashboard;
     box-shadow: $neumorphBig;
 
+    &__image, &__header, &__description, &__button-group {
+        margin: 0;
+        margin-block-end: 1.5rem;
+    }
+
     &__image {
         padding: 0.75rem;
-        margin-block-end: 1.5rem;
         box-shadow: $neumorphSmallInvert;
-
+        border-radius: 0.25rem;
 
         img {
             display: block;
@@ -21,10 +26,11 @@
             height: 100%;
         }
     }
-
-    &__header, &__description {
-        margin: 0;
-        margin-block-end: 1.5rem;
+    
+    &__button-group {
+        display: flex;
+        justify-content: space-around;
+        gap: 1rem;
     }
 
     &__button {
@@ -34,15 +40,14 @@
         font-size: 0.75rem;
         background: $bgNeumorphButton;
         box-shadow: $neumorphSmall;
+        white-space: nowrap;
 
+        .i-icon {
+            margin-inline-start: 0.5rem;
+        }
         & > * {
             text-decoration: none;
             color: $textColor;
         }
-    }
-
-    &__button-group {
-        display: flex;
-        justify-content: space-between;
     }
 }
