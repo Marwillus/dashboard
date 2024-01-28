@@ -23,11 +23,12 @@ html *::after {
 }
 
 body {
+  background-color: #ffb457;
   transition: background-color $slowTransition;
 }
 
 h1, h2, h3, h4, h5 {
-  font-family: Anek, Arial;
+  font-family: Anek, Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .i-icon {

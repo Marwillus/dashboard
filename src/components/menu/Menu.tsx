@@ -1,26 +1,18 @@
-import { ArchersBow, Home, MarketAnalysis, Microscope, SunOne } from '@icon-park/react';
 import './Menu.scss'
 import { SetStateAction, useCallback, useEffect, useRef, useState } from 'react';
+import { MenuItem } from '../../templates/dashboard/Dashboard';
 
 interface MenuProps {
     setActiveTopic: React.Dispatch<SetStateAction<number>>
+    menuItems: MenuItem[]
 }
 
-const navigationItems = [
-    { label: 'Home', icon: <Home /> },
-    { label: 'Weather', icon: <SunOne /> },
-    { label: 'Economy', icon: <MarketAnalysis /> },
-    { label: 'Science', icon: <Microscope /> },
-    { label: 'Sports', icon: <ArchersBow /> },
-];
-
-function Menu({ setActiveTopic }: MenuProps) {
+function Menu({ setActiveTopic, menuItems }: MenuProps) {
     const [activeElementsIndex, setActiveElementsIndex] = useState(0)
 
     const menu = useRef<HTMLDivElement>(null)
     const activeIndicator = useRef<HTMLDivElement>(null)
 
-    const bgColorsBody = ["#ffb457", "#ff96bd", "#9999fb", "#ffe797", "#cffff1"];
 
 
     const activeItem = useCallback((node: HTMLButtonElement) => {
@@ -32,7 +24,7 @@ function Menu({ setActiveTopic }: MenuProps) {
     const handleClickItem = (index: number) => {
         setActiveElementsIndex(index)
         setActiveTopic(index)
-        document.body.style.backgroundColor = bgColorsBody[index];
+        document.body.style.backgroundColor = menuItems[index].bgColor;
     }
 
     const moveIndicator = (node: Element) => {
@@ -50,7 +42,9 @@ function Menu({ setActiveTopic }: MenuProps) {
                 moveIndicator(activeNode)
             }
         };
-
+        // execute once on window reload
+        handleWindowResize()
+        
         window.addEventListener("resize", handleWindowResize);
         return () => window.removeEventListener("resize", handleWindowResize);
     }, [])
@@ -59,13 +53,13 @@ function Menu({ setActiveTopic }: MenuProps) {
 
     return (
         <div className='menu' ref={menu}>
-            {navigationItems.map((item, index) => {
+            {menuItems.map((item, index) => {
                 const isActive = index === activeElementsIndex
 
                 return (<button
                     key={'menu-item-' + index}
                     className={`menu__item ${isActive ? 'menu__item--active' : ''}`}
-                    style={{ "--bgColorItem": bgColorsBody[index] } as React.CSSProperties}
+                    style={{ "--bgColorMenuItem": item.bgColor } as React.CSSProperties}
                     onClick={() => handleClickItem(index)}
                     ref={isActive ? activeItem : null}
                 >

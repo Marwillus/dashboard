@@ -7,10 +7,18 @@ import { newsMockData } from '../../api/mockdata'
 import { newsUrlAll, newsUrlTop } from "../../api/endpoints";
 import axios from "axios";
 
+export interface MenuItem {
+    topic: string;
+    icon: JSX.Element;
+    header: string;
+    api: string;
+    bgColor: string;
+}
+
 const country = 'us'
 const resultSize = '3'
 
-const menuItems = [
+const menuItems: MenuItem[] = [
     {
         topic: 'Home',
         icon: <Home />,
@@ -25,24 +33,24 @@ const menuItems = [
         icon: <MarketAnalysis />,
         header: "Welcome back, Friend",
         api: `${newsUrlTop}?category=business&country=${country}&pageSize=${resultSize}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
-        bgColor: "#ffb457"
+        bgColor: "#ff96bd"
     },
     {
         topic: 'Science',
         icon: <Microscope />,
         header: "Welcome back, Friend",
         api: `${newsUrlTop}?category=science&country=${country}&pageSize=${resultSize}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
-        bgColor: "#ffb457"
+        bgColor: "#9999fb"
     },
     {
         topic: 'Sports',
         icon: <ArchersBow />,
         header: "Welcome back, Friend",
         api: `${newsUrlTop}?category=sports&country=${country}&pageSize=${resultSize}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`,
-        bgColor: "#ffb457"
+        bgColor: "#ffe797"
     },
     // TODO: add user section
-    // { topic: 'Profil', icon: <User /> },
+    // { topic: 'Profil', icon: <User /> , bgColor: '#cffff1'},
 ];
 
 function Dashboard() {
@@ -50,20 +58,18 @@ function Dashboard() {
     const [newsData, setNewsData] = useState(null)
 
     useEffect(() => {
-        console.log(menuItems[activeTopic].api);
-
-        // if (menuItems[activeTopic].api) {
-        //     axios.get(menuItems[activeTopic].api)
-        //         .then(response => {
-        //             console.log(response.data);
-        //             setNewsData(response.data)
-        //         });
-        // }
+        if (menuItems[activeTopic].api) {
+            axios.get(menuItems[activeTopic].api)
+                .then(response => {
+                    // console.log(response.data);
+                    setNewsData(response.data)
+                });
+        }
     }, [activeTopic])
 
     return (
         <div className="dashboard">
-            <Menu setActiveTopic={setActiveTopic} />
+            <Menu setActiveTopic={setActiveTopic} menuItems={menuItems}/>
 
             <div className="dashboard__content">
                 <div className="dashboard__header">
