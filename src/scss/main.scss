@@ -5,9 +5,6 @@
   font-family: Roboto, Inter, system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
-  color: $textColor;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -16,6 +13,7 @@
 
 html {
   box-sizing: border-box;
+  color: $textColor;
 }
 
 html *,
@@ -30,4 +28,8 @@ body {
 
 h1, h2, h3, h4, h5 {
   font-family: Anek, Arial;
+}
+
+.i-icon {
+  vertical-align: text-top;
 }
