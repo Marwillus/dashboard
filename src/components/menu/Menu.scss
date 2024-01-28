@@ -2,14 +2,15 @@
     --size: 1.5rem;
     --bgColorMenu: #1d1d27;
 
-    margin: 0;
     display: flex;
+    place-items: center;
+    margin: 0;
     width: 100%;
+    color: $textColorOpposite;
     font-size: 1.5em;
     padding: 0 2rem;
     position: relative;
-    place-items: center;
-    background-color: $bgColorMenu;
+    background-color: $bgDashboardMenu;
 
     &__item {
 
@@ -63,7 +64,7 @@
         clip-path: url(#menu);
         height: $borderHeight;
         position: absolute;
-        background-color: $bgColorMenu;
+        background-color: $bgDashboardMenu;
         transition: transform $slowTransition;
     }
 

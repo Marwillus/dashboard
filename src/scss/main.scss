@@ -1,9 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anek&display=swap');
+
 :root {
-  font-family: Roboto, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Roboto, Inter, system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
-  color: rgba(255, 255, 255, 0.87);
+  color: $textColor;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -25,15 +28,6 @@ body {
   transition: background-color $slowTransition;
 }
 
-.link-button {
-  all: unset;
-  padding: 0.5rem 1rem;
-  background-color: var(--bgColorItem);
-  background-color: #333;
-
-  > * {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.87);
-  }
-
+h1, h2, h3, h4, h5 {
+  font-family: Anek, Arial;
 }

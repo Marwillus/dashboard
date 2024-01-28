@@ -52,13 +52,13 @@ function Dashboard() {
     useEffect(() => {
         console.log(menuItems[activeTopic].api);
 
-        if (menuItems[activeTopic].api) {
-            axios.get(menuItems[activeTopic].api)
-                .then(response => {
-                    console.log(response.data);
-                    setNewsData(response.data)
-                });
-        }
+        // if (menuItems[activeTopic].api) {
+        //     axios.get(menuItems[activeTopic].api)
+        //         .then(response => {
+        //             console.log(response.data);
+        //             setNewsData(response.data)
+        //         });
+        // }
     }, [activeTopic])
 
     return (

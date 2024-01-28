@@ -1,3 +1,4 @@
+import { ArrowRightUp } from '@icon-park/react'
 import './Widget.scss'
 
 interface WidgetProps {
@@ -15,12 +16,11 @@ function Widget({ author, title, description, url, urlToImage, content }: Widget
             {urlToImage && <div className="widget__image">
                 <img src={urlToImage} alt={title + ' image'} />
             </div>}
-            <div className='widget__content'>
-                <h4>{title}</h4>
-                {url && <button className='link-button'>
-                    <a href={url}>{author}</a>
-                </button>}
-            </div>
+            <h4 className='widget__header'>{title}</h4>
+            {description && <p className='widget__description'>{description}</p>}
+            {url && <button className='widget__button'>
+                <a href={url} rel="noopener noreferrer" target='_blank'>Go To Article<ArrowRightUp /></a>
+            </button>}
         </div>
     )
 }

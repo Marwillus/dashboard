@@ -2,29 +2,39 @@ $column-count: 1;
 
 .dashboard {
     max-width: 800px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: $bgDashboard;
+    margin-inline: auto;
     border-radius: 2rem;
     overflow: hidden;
+    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.493);
 
     &__content {
-        padding: 1.5rem;
+        padding: 1rem 2rem;
         color: rgba(0, 0, 0, 0.8);
+
+        @media (min-width: $small) {
+            padding: 2rem 4rem;
+        }
     }
 
     &__header {
         display: flex;
-        justify-content: end;
+        justify-content: center;
 
-        > * {
-            margin-block: 1rem;
+        >* {
+            margin-block-end: 2rem;
             font-size: 2rem;
             font-weight: 200;
+
+            @media (min-width: $small) {
+                margin-block-end: 4rem;
+            }
         }
     }
 
     &__grid {
         display: grid;
-        gap: 1.5rem;
+        gap: 4rem;
 
         @media (min-width: $small) {
             $column-count: 2;
