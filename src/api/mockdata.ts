@@ -44,3 +44,45 @@ export const newsMockData = {
         }
     ]
 }
+
+export const weatherMockData = {
+    "location": {
+      "name": "Boston",
+      "region": "Lincolnshire",
+      "country": "United Kingdom",
+      "lat": 53.1,
+      "lon": -0.13,
+      "tz_id": "Europe/London",
+      "localtime_epoch": 1706613427,
+      "localtime": "2024-01-30 11:17"
+    },
+    "current": {
+      "last_updated_epoch": 1706613300,
+      "last_updated": "2024-01-30 11:15",
+      "temp_c": 6,
+      "temp_f": 42.8,
+      "is_day": 1,
+      "condition": {
+        "text": "Overcast",
+        "icon": "//cdn.weatherapi.com/weather/64x64/day/122.png",
+        "code": 1009
+      },
+      "wind_mph": 15,
+      "wind_kph": 24.1,
+      "wind_degree": 320,
+      "wind_dir": "NW",
+      "pressure_mb": 1026,
+      "pressure_in": 30.3,
+      "precip_mm": 0.01,
+      "precip_in": 0,
+      "humidity": 87,
+      "cloud": 100,
+      "feelslike_c": 2.1,
+      "feelslike_f": 35.8,
+      "vis_km": 10,
+      "vis_miles": 6,
+      "uv": 2,
+      "gust_mph": 18.6,
+      "gust_kph": 29.9
+    }
+  }
