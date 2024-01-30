@@ -9,8 +9,11 @@ $column-count: 1;
     box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.493);
 
     &__content {
+        position: relative;
         padding: 2rem;
         padding-block-start: 1rem;
+
+        transition: opacity $fastTransition;
 
         @media (min-width: $medium) {
             padding: 4rem;
@@ -45,6 +48,10 @@ $column-count: 1;
                 grid-column: 1/3;
             }
         }
+    }
+
+    .is-loading {
+        opacity: .1;
     }
 
     .modal {
