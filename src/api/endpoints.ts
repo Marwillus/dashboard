@@ -6,6 +6,7 @@ export const newsUrlTop = 'https://newsapi.org/v2/top-headlines'
 
 // weather api: https://open-meteo.com/en/docs/
 
-// we need place and time for a forecast,
-// a query would look like e.g. "?latitude=52.52&longitude=13.41&hourly=temperature_2m&timezone=GMT"
-export const weatherApi = 'https://api.open-meteo.com/v1/forecast'
+// we need place for a current weather
+// https://rapidapi.com/weatherapi/api/weatherapi-com/
+export const weatherApi = 'https://weatherapi-com.p.rapidapi.com/current.json'
+export const weatherApiHost = 'weatherapi-com.p.rapidapi.com'

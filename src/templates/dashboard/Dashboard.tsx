@@ -18,45 +18,41 @@ export interface MenuItem {
   topic: string;
   icon: JSX.Element;
   header?: string;
-  api: string;
   bgColor: string;
 }
 
 const country = "us";
 
-const menuItems: MenuItem[] = [
+export const CATEGORIES = {
+    HOME: 'home',
+    WEATHER:'Weather',
+    ECONOMY:'Economy',
+    SCIENCE:'Science',
+    SPORTS:'Sports',
+    USER:'User'
+}
+
+export const menuItems: MenuItem[] = [
   {
-    topic: "Home",
+    topic: CATEGORIES.HOME,
     icon: <Home />,
     header: "Welcome back, Friend",
-    api: `${newsUrlTop}?country=${country}&apiKey=${
-      import.meta.env.VITE_NEWS_API_KEY
-    }`,
     bgColor: "#ffb457",
   },
-  { topic: "Weather", icon: <SunOne />, api: weatherApi, bgColor: "#eeff96" },
+  { topic: CATEGORIES.WEATHER, icon: <SunOne />, bgColor: "#eeff96" },
   {
-    topic: "Economy",
+    topic: CATEGORIES.ECONOMY,
     icon: <MarketAnalysis />,
-    api: `${newsUrlTop}?category=business&country=${country}&apiKey=${
-      import.meta.env.VITE_NEWS_API_KEY
-    }`,
     bgColor: "#ff96bd",
   },
   {
-    topic: "Science",
+    topic: CATEGORIES.SCIENCE,
     icon: <Microscope />,
-    api: `${newsUrlTop}?category=science&country=${country}&apiKey=${
-      import.meta.env.VITE_NEWS_API_KEY
-    }`,
     bgColor: "#9999fb",
   },
   {
-    topic: "Sports",
+    topic: CATEGORIES.SPORTS,
     icon: <ArchersBow />,
-    api: `${newsUrlTop}?category=sports&country=${country}&apiKey=${
-      import.meta.env.VITE_NEWS_API_KEY
-    }`,
     bgColor: "#ffe797",
   },
   // TODO: add user section
@@ -66,12 +62,17 @@ const menuItems: MenuItem[] = [
 function Dashboard() {
   const [activeTopic, setActiveTopic] = useState(0);
   const [newsData, setNewsData] = useState(null);
+  const [weatherData, setweatherData] = useState(null);
   const [newsError, setNewsError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (menuItems[activeTopic].api) {
-      setLoading(true);
+    if (menuItems[activeTopic].topic === CATEGORIES.HOME) {
+        const newsApi = `${newsUrlTop}?country=${country}&apiKey=${
+            import.meta.env.VITE_NEWS_API_KEY
+          }`
+        
+    //   setLoading(true);
     //   axios.get(menuItems[activeTopic].api)
     //       .then(response => {
     //           // console.log(response.data);
@@ -79,7 +80,25 @@ function Dashboard() {
     //       })
     //       .catch(e => setNewsError(e))
     //       .finally(() => setLoading(false))
+        
+        return
     }
+    if (menuItems[activeTopic].topic === CATEGORIES.WEATHER) {
+        return
+    }
+
+    const newsApi = `${newsUrlTop}?category=${menuItems[activeTopic].topic}&country=${country}&apiKey=${
+        import.meta.env.VITE_NEWS_API_KEY
+      }`
+    //   setLoading(true);
+    //   axios.get(newsApi)
+    //       .then(response => {
+    //           // console.log(response.data);
+    //           setNewsData(response.data)
+    //       })
+    //       .catch(e => setNewsError(e))
+    //       .finally(() => setLoading(false))
+    
   }, [activeTopic]);
 
   return (
