@@ -10,7 +10,7 @@ import Menu from "../../components/menu/Menu";
 import Widget from "../../components/widget/Widget";
 import "./Dashboard.scss";
 import { useEffect, useState } from "react";
-import { newsMockData } from "../../api/mockdata";
+import { newsMockData, weatherMockData } from "../../api/mockdata";
 import { newsUrlTop, weatherApi } from "../../api/endpoints";
 import axios from "axios";
 import { getLocation, Location } from "../../utils/helper/location";
@@ -26,18 +26,18 @@ const country = "us";
 
 //use browser location or location from berlin
 const location: Location = getLocation() ?? {
-  lat: '52.520008',
-  long: '13.404954',
+  lat: "52.520008",
+  long: "13.404954",
 };
 
-export const CATEGORIES = {
-  HOME: "home",
-  WEATHER: "Weather",
-  ECONOMY: "Economy",
-  SCIENCE: "Science",
-  SPORTS: "Sports",
-  USER: "User",
-};
+export enum CATEGORIES {
+  HOME = "home",
+  WEATHER = "Weather",
+  ECONOMY = "Economy",
+  SCIENCE = "Science",
+  SPORTS = "Sports",
+  USER = "User",
+}
 
 export const menuItems: MenuItem[] = [
   {
@@ -66,26 +66,28 @@ export const menuItems: MenuItem[] = [
   // { topic: 'Profil', icon: <User /> , bgColor: '#cffff1'},
 ];
 
+const mockData = { weather: weatherMockData, news: newsMockData };
+
 function Dashboard() {
   const [activeTopic, setActiveTopic] = useState(0);
-  const [newsData, setNewsData] = useState(null);
-  const [weatherData, setWeatherData] = useState(null);
+  const [data, setData] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const category = menuItems[activeTopic].topic;
 
   useEffect(() => {
-    if (menuItems[activeTopic].topic === CATEGORIES.HOME) {
+    if (category === CATEGORIES.HOME) {
       const newsApi = `${newsUrlTop}?country=${country}&apiKey=${
         import.meta.env.VITE_NEWS_API_KEY
       }`;
       const weatherApiOptions = {
-        method: 'GET',
+        method: "GET",
         url: weatherApi,
-        params: {q: `${location.lat},${location.long}`},
+        params: { q: `${location.lat},${location.long}` },
         headers: {
-          'X-RapidAPI-Key': import.meta.env.VITE_WEATHER_API_KEY,
-          'X-RapidAPI-Host': 'weatherapi-com.p.rapidapi.com'
-        }
+          "X-RapidAPI-Key": import.meta.env.VITE_WEATHER_API_KEY,
+          "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
+        },
       };
       //   setLoading(true);
       //   axios.get(menuItems[activeTopic].api)
@@ -96,23 +98,23 @@ function Dashboard() {
       //       .catch(e => setNewsError(e))
       //       .finally(() => setLoading(false))
 
-      axios.request(weatherApiOptions)
-        .then(response => {
-            console.log(response.data);
-            setWeatherData(response.data)
-        })
-        .catch(e => setError(e))
-        .finally(() => setLoading(false))
+      // axios.request(weatherApiOptions)
+      //   .then(response => {
+      //       console.log(response.data);
+      //       setWeatherData(response.data)
+      //   })
+      // .catch(e => setError(e))
+      // .finally(() => setLoading(false))
       return;
     }
 
-    if (menuItems[activeTopic].topic === CATEGORIES.WEATHER) {
+    if (category === CATEGORIES.WEATHER) {
       return;
     }
 
-    const newsApi = `${newsUrlTop}?category=${
-      menuItems[activeTopic].topic
-    }&country=${country}&apiKey=${import.meta.env.VITE_NEWS_API_KEY}`;
+    const newsApi = `${newsUrlTop}?category=${category}&country=${country}&apiKey=${
+      import.meta.env.VITE_NEWS_API_KEY
+    }`;
     //   setLoading(true);
     //   axios.get(newsApi)
     //       .then(response => {
@@ -138,7 +140,7 @@ function Dashboard() {
         </div>
 
         <div className={"dashboard__grid " + (loading ? "is-loading" : "")}>
-          {(newsData ?? newsMockData).articles.map((article, index) => {
+          {(data ?? mockData).news.articles.map((article, index) => {
             if (index <= 2)
               return (
                 <div
@@ -146,6 +148,7 @@ function Dashboard() {
                   className={"dashboard__grid__widget-" + index}
                 >
                   <Widget
+                    shape="square"
                     author={article.author}
                     title={article.title}
                     description={article.description}

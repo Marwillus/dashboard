@@ -2,16 +2,29 @@ import { ArrowRightUp, Close, ReadBook } from '@icon-park/react'
 import './Widget.scss'
 import { useEffect, useRef } from 'react'
 
+// const SHAPES = {
+//     SQUARE: 'square',
+//     CIRCLE: 'circle'
+// } as const
+
+enum SHAPES {
+    SQUARE= 'square',
+    CIRCLE= 'circle'
+  }
+  
+type shape = `${SHAPES}`;
+
 interface WidgetProps {
-    author: string | null
+    shape: shape
+    author?: string | null
     title: string | null
-    description: string | null
-    url: string | null
-    urlToImage: string | null
-    content: string | null
+    description?: string | null
+    url?: string | null
+    urlToImage?: string | null
+    content?: string | null
 }
 
-function Widget({ author, title, description, url, urlToImage, content }: WidgetProps) {
+function Widget({ shape, author, title, description, url, urlToImage, content }: WidgetProps) {
     const modal = useRef<HTMLDialogElement>(null)
 
     const openModal = () => {
@@ -37,7 +50,7 @@ function Widget({ author, title, description, url, urlToImage, content }: Widget
     }
 
     return (
-        <div className='widget'>
+        <div className={`widget widget--${shape}`}>
             {urlToImage && <div className="widget__image">
                 <img src={urlToImage} alt={title + ' image'} />
             </div>}
