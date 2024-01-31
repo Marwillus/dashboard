@@ -1,25 +1,26 @@
-import {
-  ArchersBow,
-  Home,
-  MarketAnalysis,
-  Microscope,
-  SunOne,
-  User,
-} from "@icon-park/react";
-import Menu from "../../components/menu/Menu";
-import Widget from "../../components/widget/Widget";
-import "./Dashboard.scss";
-import { useEffect, useState } from "react";
-import { newsMockData, weatherMockData } from "../../api/mockdata";
-import { newsUrlTop, weatherApi } from "../../api/endpoints";
-import axios from "axios";
-import { getLocation, Location } from "../../utils/helper/location";
+import './Dashboard.scss';
+
+import { useEffect, useState } from 'react';
+
+import { ArchersBow, Home, MarketAnalysis, Microscope, SunOne } from '@icon-park/react';
+
+import { newsUrlTop, weatherApi } from '../../api/endpoints';
+import { newsMockData, weatherMockData } from '../../api/mockdata';
+import { NewsData, WeatherData } from '../../api/types';
+import Menu from '../../components/menu/Menu';
+import Widget from '../../components/widget/Widget';
+import { getLocation, Location } from '../../utils/helper/location';
 
 export interface MenuItem {
   topic: string;
   icon: JSX.Element;
   header?: string;
   bgColor: string;
+}
+
+export interface ApiData {
+  weather?: WeatherData;
+  news?: NewsData;
 }
 
 const country = "us";
@@ -66,11 +67,11 @@ export const menuItems: MenuItem[] = [
   // { topic: 'Profil', icon: <User /> , bgColor: '#cffff1'},
 ];
 
-const mockData = { weather: weatherMockData, news: newsMockData };
+const mockData: ApiData = { weather: weatherMockData, news: newsMockData };
 
 function Dashboard() {
   const [activeTopic, setActiveTopic] = useState(0);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<ApiData | null>(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const category = menuItems[activeTopic].topic;
@@ -131,31 +132,27 @@ function Dashboard() {
 
       <div className="dashboard__content">
         <div className="dashboard__header">
-          <h3>
+          <h3 className='title'>
             {" "}
             {loading
               ? "loading..."
               : menuItems[activeTopic].header ?? menuItems[activeTopic].topic}
           </h3>
+
+          {category === CATEGORIES.HOME && (
+            <Widget shape="circle" weatherData={(data ?? mockData).weather} />
+          )}
         </div>
 
         <div className={"dashboard__grid " + (loading ? "is-loading" : "")}>
-          {(data ?? mockData).news.articles.map((article, index) => {
+          {(data ?? mockData).news?.articles.map((article, index) => {
             if (index <= 2)
               return (
                 <div
                   key={"widget-" + index}
                   className={"dashboard__grid__widget-" + index}
                 >
-                  <Widget
-                    shape="square"
-                    author={article.author}
-                    title={article.title}
-                    description={article.description}
-                    url={article.url}
-                    urlToImage={article.urlToImage}
-                    content={article.content}
-                  />
+                  <Widget shape="square" newsData={article} />
                 </div>
               );
           })}

@@ -61,4 +61,22 @@
       color: $textColor;
     }
   }
+
+  &__weather-home {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+
+    font-size: 0.75rem;
+
+    .main-temperature {
+      white-space: nowrap;
+      font-size: 2rem;
+
+      @media (min-width: $medium) {
+        margin-block-end: 3rem;
+      }
+    }
+  }
 }

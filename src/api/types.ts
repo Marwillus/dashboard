@@ -9,15 +9,15 @@ export interface Article {
   source: Source;
   author: string;
   title: string;
-  description?: string;
+  description?: string | null;
   url: string;
-  urlToImage?: string;
-  publishedAt: string;
-  content?: string;
+  urlToImage?: string| null;
+  publishedAt: string| null;
+  content?: string| null;
 }
 
 export interface Source {
-  id?: string;
+  id?: string | null;
   name: string;
 }
 
