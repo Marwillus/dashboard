@@ -1,18 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-
-:root {
-  font-family: Roboto, Inter, system-ui, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+@import url("./fonts.scss");
 
 html {
   box-sizing: border-box;
-  color: $textColor;
 }
 
 html *,
@@ -22,12 +11,25 @@ html *::after {
 }
 
 body {
+  font-family: "Roboto", system-ui, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  color: $textColor;
   background-color: #ffb457;
   transition: background-color $slowTransition;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5 {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family:  "Raleway", Verdana;
 }
 
 .i-icon {

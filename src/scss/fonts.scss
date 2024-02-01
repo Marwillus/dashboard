@@ -1,0 +1,47 @@
+@font-face {
+    font-family: "Roboto";
+    font-weight: 800;
+    src:
+        local("Roboto-Black"),
+        url("assets/fonts/roboto-black-webfont.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 600;
+    src:
+        local("Roboto-Medium"),
+        url("assets/fonts/roboto-medium-webfont.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 400;
+    src:
+        local("Roboto-Regular"),
+        url("assets/fonts/roboto-regular-webfont.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Roboto";
+    font-weight: 200;
+    src:
+        local("Roboto-Light"),
+        url("assets/fonts/roboto-light-webfont.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "NewsCycle";
+    font-weight: 400;
+    src:
+        local("NewsCycle-Regular"),
+        url("assets/fonts/newscycle-regular-webfont.woff2") format("woff2");
+}
+
+@font-face {
+    font-family: "Raleway";
+    font-weight: 400;
+    src:
+        local("Raleway-Variablefont_wght"),
+        url("assets/fonts/raleway-variablefont_wght-webfont.woff2") format("woff2");
+}
