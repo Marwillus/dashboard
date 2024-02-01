@@ -1,11 +1,12 @@
 import './Dashboard.scss';
 
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { Legend, Line, LineChart, Tooltip, XAxis, YAxis } from 'recharts';
 
 import { ArchersBow, Home, MarketAnalysis, Microscope, SunOne } from '@icon-park/react';
 
-import { newsUrlTop, weatherApiCurrent } from '../../api/endpoints';
+import { newsUrlTop, weatherApiCurrent, weatherApiForecast } from '../../api/endpoints';
 import { newsMockData, weatherMockDataCurrent, weatherMockDataForecast } from '../../api/mockdata';
 import { NewsData, WeatherDataCurrent, WeatherDataForecast } from '../../api/types';
 import Menu from '../../components/menu/Menu';
@@ -35,7 +36,7 @@ const location: Location = getLocation() ?? {
 export enum CATEGORIES {
   HOME = "home",
   WEATHER = "Weather",
-  ECONOMY = "Economy",
+  ECONOMY = "Business",
   SCIENCE = "Science",
   SPORTS = "Sports",
   USER = "User",
@@ -84,13 +85,21 @@ function Dashboard() {
   const category = menuItems[activeTopic].topic;
 
   useEffect(() => {
-    //   setLoading(true);
+      setLoading(true);
 
     // GET Category Home Data
     if (category === CATEGORIES.HOME) {
       const newsApi = `${newsUrlTop}?country=${country}&apiKey=${
         import.meta.env.VITE_NEWS_API_KEY
       }`;
+      axios
+      .get(newsApi)
+      .then((response) => {
+        setData(prev=>({weather: prev?.weather, news:response.data}));
+      })
+      .catch((e) => setError(e))
+      .finally(() => setLoading(false));
+
       const weatherApiOptions = {
         method: "GET",
         url: weatherApiCurrent,
@@ -100,51 +109,47 @@ function Dashboard() {
           "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
         },
       };
-
-      // axios.request(weatherApiOptions)
-      //   .then(response => {
-      //       console.log(response.data);
-      //       setWeatherData(response.data)
-      //   })
-      // .catch(e => setError(e))
-      // .finally(() => setLoading(false))
+      axios.request(weatherApiOptions)
+        .then(response => {
+            setData(prev=>({weather: response.data, news: prev?.news}))
+        })
+      .catch(e => setError(e))
+      .finally(() => setLoading(false))
       return;
     }
 
     // GET Category Weather Data
-    // if (category === CATEGORIES.WEATHER) {
-    //   const weatherApiOptions = {
-    //     method: "GET",
-    //     url: weatherApiForecast,
-    //     params: { q: "Berlin", days: "6" },
-    //     headers: {
-    //       "X-RapidAPI-Key": import.meta.env.VITE_WEATHER_API_KEY,
-    //       "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
-    //     },
-    //   };
-    //   axios
-    //     .request(weatherApiOptions)
-    //     .then((response) => {
-    //       console.log(response.data);
-    //       setForecast(response.data);
-    //     })
-    //     .catch((e) => setError(e))
-    //     .finally(() => setLoading(false));
-    //   return;
-    // }
+    if (category === CATEGORIES.WEATHER) {
+      const weatherApiOptions = {
+        method: "GET",
+        url: weatherApiForecast,
+        params: { q: "Berlin", days: "6" },
+        headers: {
+          "X-RapidAPI-Key": import.meta.env.VITE_WEATHER_API_KEY,
+          "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
+        },
+      };
+      axios
+        .request(weatherApiOptions)
+        .then((response) => {
+          setForecast(response.data);
+        })
+        .catch((e) => setError(e))
+        .finally(() => setLoading(false));
+      return;
+    }
 
     // GET All Other Category Data
     const newsApi = `${newsUrlTop}?category=${category}&country=${country}&apiKey=${
       import.meta.env.VITE_NEWS_API_KEY
     }`;
-    //   setLoading(true);
-    //   axios.get(newsApi)
-    //       .then(response => {
-    //           // console.log(response.data);
-    //           setNewsData(response.data)
-    //       })
-    //       .catch(e => setNewsError(e))
-    //       .finally(() => setLoading(false))
+    axios
+      .get(newsApi)
+      .then((response) => {
+        setData(prev=>({weather: prev?.weather, news:response.data}));
+      })
+      .catch((e) => setError(e))
+      .finally(() => setLoading(false));
   }, [activeTopic]);
 
   return (
@@ -181,30 +186,30 @@ function Dashboard() {
               })}
             </>
           )}
-          {forecast && (
-              <LineChart
-                width={400}
-                height={300}
-                data={forecast.forecast.forecastday}
-              >
-                <XAxis dataKey="date" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line
-                  type="monotone"
-                  dataKey="day.maxtemp_c"
-                  name="max C°"
-                  stroke="#8884d8"
-                  activeDot={{ r: 8 }}
-                />
-                <Line
-                  type="monotone"
-                  dataKey="day.mintemp_c"
-                  name="min C°"
-                  stroke="#82ca9d"
-                />
-              </LineChart>
+          {category === CATEGORIES.WEATHER &&forecast && (
+            <LineChart
+              width={400}
+              height={300}
+              data={forecast.forecast.forecastday}
+            >
+              <XAxis type="category" />
+              <YAxis unit={"°C"} />
+              <Tooltip />
+              <Legend />
+              <Line
+                type="monotone"
+                dataKey="day.maxtemp_c"
+                name="max"
+                stroke="#8884d8"
+                activeDot={{ r: 8 }}
+              />
+              <Line
+                type="monotone"
+                dataKey="day.mintemp_c"
+                name="min"
+                stroke="#82ca9d"
+              />
+            </LineChart>
           )}
         </div>
       </div>
