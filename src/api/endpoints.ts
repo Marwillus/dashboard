@@ -8,5 +8,6 @@ export const newsUrlTop = 'https://newsapi.org/v2/top-headlines'
 
 // we need place for a current weather
 // https://rapidapi.com/weatherapi/api/weatherapi-com/
-export const weatherApi = 'https://weatherapi-com.p.rapidapi.com/current.json'
+export const weatherApiCurrent = 'https://weatherapi-com.p.rapidapi.com/current.json'
+export const weatherApiForecast = 'https://weatherapi-com.p.rapidapi.com/forecast.json'
 export const weatherApiHost = 'weatherapi-com.p.rapidapi.com'

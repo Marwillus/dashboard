@@ -4,7 +4,7 @@ import { useRef } from 'react';
 
 import { ArrowRightUp, Close, ReadBook } from '@icon-park/react';
 
-import { Article, WeatherData } from '../../api/types';
+import { Article, WeatherDataCurrent } from '../../api/types';
 
 enum SHAPES {
   SQUARE = "square",
@@ -16,7 +16,7 @@ type shape = `${SHAPES}`;
 interface WidgetProps {
   shape: shape;
   newsData?: Article;
-  weatherData?: WeatherData;
+  weatherData?: WeatherDataCurrent;
 }
 
 function Widget({ shape, newsData, weatherData }: WidgetProps) {
@@ -85,10 +85,17 @@ function Widget({ shape, newsData, weatherData }: WidgetProps) {
   return (
     <div className={`widget widget--${shape}`}>
       {newsData && <NewsContent />}
+      {/* TODO: this is bullshit, need to seperate weather from news */}
       {weatherData && (
-        <div className='widget__weather-home'>
-          <span >{new Date(weatherData.location.localtime).toLocaleTimeString().slice(0,-3)}</span>
-          <span className='main-temperature'>{weatherData.current.feelslike_c} C°</span>
+        <div className="widget__weather-home">
+          <span>
+            {new Date(weatherData.location.localtime)
+              .toLocaleTimeString()
+              .slice(0, -3)}
+          </span>
+          <span className="main-temperature">
+            {weatherData.current.feelslike_c} C°
+          </span>
           <span>{weatherData.location.region}</span>
         </div>
       )}
