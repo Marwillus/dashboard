@@ -34,11 +34,13 @@
             border-radius: 50%;
             position: absolute;
             transform: scale(0);
-            transition: background-color $slowTransition, transform $slowTransition;
+            transition:
+                background-color $slowTransition,
+                transform $slowTransition;
         }
 
         &--active {
-            transform: translate3d(0, .8rem, 0);
+            transform: translate3d(0, 0.8rem, 0);
 
             &::before {
                 transform: scale(1);
@@ -49,10 +51,7 @@
                 display: block;
             }
         }
-
-
     }
-
 
     &__active-indicator {
         $borderHeight: 2rem;

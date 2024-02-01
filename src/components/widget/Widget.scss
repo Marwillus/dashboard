@@ -14,6 +14,10 @@
   &--circle {
     aspect-ratio: 1 / 1;
     border-radius: 50%;
+    min-width: 8rem;
+    max-width: 10rem;
+    outline: 2px solid var(--bgColorMenuItem);
+    outline-offset: -0.5rem;
   }
 
   &__image,
@@ -21,7 +25,11 @@
   &__description,
   &__button-group {
     margin: 0;
-    margin-block-end: 1.5rem;
+    margin-block-end: 2rem;
+
+    @media (min-width: $medium) {
+      margin-block-end: 6rem;
+    }
   }
 
   &__image {
@@ -63,8 +71,10 @@
   }
 
   &__weather-home {
+    height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     text-align: center;
     padding: 1rem;
 
@@ -73,10 +83,6 @@
     .main-temperature {
       white-space: nowrap;
       font-size: 2rem;
-
-      @media (min-width: $medium) {
-        margin-block-end: 3rem;
-      }
     }
   }
 }

@@ -1,5 +1,9 @@
 @import url("./fonts.scss");
 
+:root {
+  --bgColorMenuItem: #ffb457
+}
+
 html {
   box-sizing: border-box;
 }
@@ -15,7 +19,7 @@ body {
   line-height: 1.5;
   font-weight: 400;
   color: $textColor;
-  background-color: #ffb457;
+  background-color: var(--bgColorMenuItem);
   transition: background-color $slowTransition;
 
   font-synthesis: none;
@@ -29,7 +33,7 @@ h2,
 h3,
 h4,
 h5 {
-  font-family:  "Raleway", Verdana;
+  font-family:  Verdana, sans-serif;
 }
 
 .i-icon {
