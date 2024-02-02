@@ -26,10 +26,6 @@
   &__button-group {
     margin: 0;
     margin-block-end: 2rem;
-
-    @media (min-width: $medium) {
-      margin-block-end: 6rem;
-    }
   }
 
   &__image {
@@ -53,6 +49,8 @@
 
   &__button {
     all: unset;
+    font-family: 'jura';
+    font-weight: 700;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
     font-size: 0.75rem;
@@ -68,6 +66,10 @@
       text-decoration: none;
       color: $textColor;
     }
+  }
+
+  .modal {
+    font-family: 'NewsCycle';
   }
 
   &__weather-home {
